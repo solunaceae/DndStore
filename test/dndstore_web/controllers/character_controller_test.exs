@@ -3,9 +3,33 @@ defmodule DndstoreWeb.CharacterControllerTest do
 
   import Dndstore.CharactersFixtures
 
-  @create_attrs %{charisma: 42, constitution: 42, dexterity: 42, intelligence: 42, name: "some name", strength: 42, wisdom: 42}
-  @update_attrs %{charisma: 43, constitution: 43, dexterity: 43, intelligence: 43, name: "some updated name", strength: 43, wisdom: 43}
-  @invalid_attrs %{charisma: nil, constitution: nil, dexterity: nil, intelligence: nil, name: nil, strength: nil, wisdom: nil}
+  @create_attrs %{
+    charisma: 42,
+    constitution: 42,
+    dexterity: 42,
+    intelligence: 42,
+    name: "some name",
+    strength: 42,
+    wisdom: 42
+  }
+  @update_attrs %{
+    charisma: 43,
+    constitution: 43,
+    dexterity: 43,
+    intelligence: 43,
+    name: "some updated name",
+    strength: 43,
+    wisdom: 43
+  }
+  @invalid_attrs %{
+    charisma: nil,
+    constitution: nil,
+    dexterity: nil,
+    intelligence: nil,
+    name: nil,
+    strength: nil,
+    wisdom: nil
+  }
 
   describe "index" do
     test "lists all characters", %{conn: conn} do

@@ -8,7 +8,15 @@ defmodule Dndstore.CharactersTest do
 
     import Dndstore.CharactersFixtures
 
-    @invalid_attrs %{charisma: nil, constitution: nil, dexterity: nil, intelligence: nil, name: nil, strength: nil, wisdom: nil}
+    @invalid_attrs %{
+      charisma: nil,
+      constitution: nil,
+      dexterity: nil,
+      intelligence: nil,
+      name: nil,
+      strength: nil,
+      wisdom: nil
+    }
 
     test "list_characters/0 returns all characters" do
       character = character_fixture()
@@ -21,7 +29,15 @@ defmodule Dndstore.CharactersTest do
     end
 
     test "create_character/1 with valid data creates a character" do
-      valid_attrs = %{charisma: 42, constitution: 42, dexterity: 42, intelligence: 42, name: "some name", strength: 42, wisdom: 42}
+      valid_attrs = %{
+        charisma: 42,
+        constitution: 42,
+        dexterity: 42,
+        intelligence: 42,
+        name: "some name",
+        strength: 42,
+        wisdom: 42
+      }
 
       assert {:ok, %Character{} = character} = Characters.create_character(valid_attrs)
       assert character.charisma == 42
@@ -39,9 +55,20 @@ defmodule Dndstore.CharactersTest do
 
     test "update_character/2 with valid data updates the character" do
       character = character_fixture()
-      update_attrs = %{charisma: 43, constitution: 43, dexterity: 43, intelligence: 43, name: "some updated name", strength: 43, wisdom: 43}
 
-      assert {:ok, %Character{} = character} = Characters.update_character(character, update_attrs)
+      update_attrs = %{
+        charisma: 43,
+        constitution: 43,
+        dexterity: 43,
+        intelligence: 43,
+        name: "some updated name",
+        strength: 43,
+        wisdom: 43
+      }
+
+      assert {:ok, %Character{} = character} =
+               Characters.update_character(character, update_attrs)
+
       assert character.charisma == 43
       assert character.constitution == 43
       assert character.dexterity == 43

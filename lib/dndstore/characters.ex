@@ -18,8 +18,10 @@ defmodule Dndstore.Characters do
 
   """
   def list_characters(user_id) do
-    query = from c in Character,
-              where: c.user_id == ^user_id
+    query =
+      from c in Character,
+        where: c.user_id == ^user_id
+
     Repo.all(query)
   end
 
@@ -37,13 +39,15 @@ defmodule Dndstore.Characters do
       ** (Ecto.NoResultsError)
 
   """
-  def get_character!(user_id, id) do
-    query = from c in Character,
-              where: c.user_id == ^user_id,
-              where: c.id == ^id
-    Repo.one!(query)
+  def get_character(user_id, id) do
+    query =
+      from c in Character,
+        where: c.user_id == ^user_id,
+        where: c.id == ^id
+
+    Repo.one(query)
   end
-  
+
   @doc """
   Creates a character.
 

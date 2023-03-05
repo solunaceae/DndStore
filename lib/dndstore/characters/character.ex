@@ -20,8 +20,24 @@ defmodule Dndstore.Characters.Character do
   @doc false
   def changeset(character, attrs) do
     character
-    |> cast(attrs, [:name, :strength, :dexterity, :constitution, :wisdom, :intelligence, :charisma])
-    |> validate_required([:name, :strength, :dexterity, :constitution, :wisdom, :intelligence, :charisma])
+    |> cast(attrs, [
+      :name,
+      :strength,
+      :dexterity,
+      :constitution,
+      :wisdom,
+      :intelligence,
+      :charisma
+    ])
+    |> validate_required([
+      :name,
+      :strength,
+      :dexterity,
+      :constitution,
+      :wisdom,
+      :intelligence,
+      :charisma
+    ])
     |> validate_inclusion(:charisma, 1..20)
     |> validate_inclusion(:constitution, 1..20)
     |> validate_inclusion(:dexterity, 1..20)
