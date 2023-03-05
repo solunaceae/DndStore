@@ -1,0 +1,21 @@
+<.header>
+  Character <%= @character.name %>
+  <:subtitle>This is a character record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/characters/#{@character}/edit"}>
+      <.button>Edit character</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Name"><%= @character.name %></:item>
+  <:item title="Strength"><%= @character.strength %></:item>
+  <:item title="Dexterity"><%= @character.dexterity %></:item>
+  <:item title="Constitution"><%= @character.constitution %></:item>
+  <:item title="Wisdom"><%= @character.wisdom %></:item>
+  <:item title="Intelligence"><%= @character.intelligence %></:item>
+  <:item title="Charisma"><%= @character.charisma %></:item>
+</.list>
+
+<.back navigate={~p"/characters"}>Back to characters</.back>

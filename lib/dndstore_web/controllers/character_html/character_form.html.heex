@@ -1,0 +1,15 @@
+<.simple_form :let={f} for={@changeset} action={@action}>
+  <.error :if={@changeset.action}>
+    Oops, something went wrong! Please check the errors below.
+  </.error>
+  <.input field={f[:name]} type="text" label="Name" />
+  <.input field={f[:strength]} type="number" label="Strength" />
+  <.input field={f[:dexterity]} type="number" label="Dexterity" />
+  <.input field={f[:constitution]} type="number" label="Constitution" />
+  <.input field={f[:wisdom]} type="number" label="Wisdom" />
+  <.input field={f[:intelligence]} type="number" label="Intelligence" />
+  <.input field={f[:charisma]} type="number" label="Charisma" />
+  <:actions>
+    <.button>Save Character</.button>
+  </:actions>
+</.simple_form>
