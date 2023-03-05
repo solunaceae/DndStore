@@ -11,13 +11,14 @@ defmodule Dndstore.CharactersFixtures do
     {:ok, character} =
       attrs
       |> Enum.into(%{
-        charisma: 42,
-        constitution: 42,
-        dexterity: 42,
-        intelligence: 42,
+        charisma: 16,
+        constitution: 16,
+        dexterity: 16,
+        intelligence: 16,
         name: "some name",
-        strength: 42,
-        wisdom: 42
+        strength: 16,
+        wisdom: 16,
+        user_id: "1"
       })
       |> Dndstore.Characters.create_character()
 

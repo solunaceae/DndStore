@@ -18,9 +18,9 @@ defmodule Dndstore.CharactersTest do
       wisdom: nil
     }
 
-    test "list_characters/0 returns all characters" do
+    test "list_characters/1 returns all characters" do
       character = character_fixture()
-      assert Characters.list_characters() == [character]
+      assert Characters.list_characters(1) == [character]
     end
 
     test "get_character!/1 returns the character with given id" do
@@ -30,23 +30,23 @@ defmodule Dndstore.CharactersTest do
 
     test "create_character/1 with valid data creates a character" do
       valid_attrs = %{
-        charisma: 42,
-        constitution: 42,
-        dexterity: 42,
-        intelligence: 42,
+        charisma: 16,
+        constitution: 16,
+        dexterity: 16,
+        intelligence: 16,
         name: "some name",
-        strength: 42,
-        wisdom: 42
+        strength: 16,
+        wisdom: 16
       }
 
       assert {:ok, %Character{} = character} = Characters.create_character(valid_attrs)
-      assert character.charisma == 42
-      assert character.constitution == 42
-      assert character.dexterity == 42
-      assert character.intelligence == 42
+      assert character.charisma == 16
+      assert character.constitution == 16
+      assert character.dexterity == 16
+      assert character.intelligence == 16
       assert character.name == "some name"
-      assert character.strength == 42
-      assert character.wisdom == 42
+      assert character.strength == 16
+      assert character.wisdom == 16
     end
 
     test "create_character/1 with invalid data returns error changeset" do
@@ -57,25 +57,25 @@ defmodule Dndstore.CharactersTest do
       character = character_fixture()
 
       update_attrs = %{
-        charisma: 43,
-        constitution: 43,
-        dexterity: 43,
-        intelligence: 43,
+        charisma: 17,
+        constitution: 17,
+        dexterity: 17,
+        intelligence: 17,
         name: "some updated name",
-        strength: 43,
-        wisdom: 43
+        strength: 17,
+        wisdom: 17
       }
 
       assert {:ok, %Character{} = character} =
                Characters.update_character(character, update_attrs)
 
-      assert character.charisma == 43
-      assert character.constitution == 43
-      assert character.dexterity == 43
-      assert character.intelligence == 43
+      assert character.charisma == 17
+      assert character.constitution == 17
+      assert character.dexterity == 17
+      assert character.intelligence == 17
       assert character.name == "some updated name"
-      assert character.strength == 43
-      assert character.wisdom == 43
+      assert character.strength == 17
+      assert character.wisdom == 17
     end
 
     test "update_character/2 with invalid data returns error changeset" do
