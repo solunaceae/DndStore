@@ -21,8 +21,8 @@ defmodule Dndstore.CharactersFixtures do
         strength: 16,
         wisdom: 16
       })
-      
-      {:ok, character} = Dndstore.Characters.create_character(user, character)
+
+    {:ok, character} = Dndstore.Characters.create_character(user, character)
 
     character
   end

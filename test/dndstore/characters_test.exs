@@ -9,9 +9,9 @@ defmodule Dndstore.CharactersTest do
     import Dndstore.AccountsFixtures
     import Dndstore.CharactersFixtures
 
-    setup do 
+    setup do
       %{user: user_fixture()}
-    end 
+    end
 
     @invalid_attrs %{
       charisma: nil,
