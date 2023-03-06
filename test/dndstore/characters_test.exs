@@ -6,7 +6,12 @@ defmodule Dndstore.CharactersTest do
   describe "characters" do
     alias Dndstore.Characters.Character
 
+    import Dndstore.AccountsFixtures
     import Dndstore.CharactersFixtures
+
+    setup do 
+      %{user: user_fixture()}
+    end 
 
     @invalid_attrs %{
       charisma: nil,
@@ -18,17 +23,17 @@ defmodule Dndstore.CharactersTest do
       wisdom: nil
     }
 
-    test "list_characters/1 returns all characters" do
-      character = character_fixture()
-      assert Characters.list_characters(1) == [character]
+    test "list_characters/1 returns all characters", %{user: user} do
+      character = character_fixture(user)
+      assert Characters.list_characters(user) == [character]
     end
 
-    test "get_character!/1 returns the character with given id" do
-      character = character_fixture()
-      assert Characters.get_character!(character.id) == character
+    test "get_character!/1 returns the character with given id", %{user: user} do
+      character = character_fixture(user)
+      assert Characters.get_character(user, character.id) == character
     end
 
-    test "create_character/1 with valid data creates a character" do
+    test "create_character/1 with valid data creates a character", %{user: user} do
       valid_attrs = %{
         charisma: 16,
         constitution: 16,
@@ -39,7 +44,7 @@ defmodule Dndstore.CharactersTest do
         wisdom: 16
       }
 
-      assert {:ok, %Character{} = character} = Characters.create_character(valid_attrs)
+      assert {:ok, %Character{} = character} = Characters.create_character(user, valid_attrs)
       assert character.charisma == 16
       assert character.constitution == 16
       assert character.dexterity == 16
@@ -49,12 +54,12 @@ defmodule Dndstore.CharactersTest do
       assert character.wisdom == 16
     end
 
-    test "create_character/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Characters.create_character(@invalid_attrs)
+    test "create_character/1 with invalid data returns error changeset", %{user: user} do
+      assert {:error, %Ecto.Changeset{}} = Characters.create_character(user, @invalid_attrs)
     end
 
-    test "update_character/2 with valid data updates the character" do
-      character = character_fixture()
+    test "update_character/2 with valid data updates the character", %{user: user} do
+      character = character_fixture(user)
 
       update_attrs = %{
         charisma: 17,
@@ -78,20 +83,20 @@ defmodule Dndstore.CharactersTest do
       assert character.wisdom == 17
     end
 
-    test "update_character/2 with invalid data returns error changeset" do
-      character = character_fixture()
+    test "update_character/2 with invalid data returns error changeset", %{user: user} do
+      character = character_fixture(user)
       assert {:error, %Ecto.Changeset{}} = Characters.update_character(character, @invalid_attrs)
-      assert character == Characters.get_character!(character.id)
+      assert character == Characters.get_character(user, character.id)
     end
 
-    test "delete_character/1 deletes the character" do
-      character = character_fixture()
+    test "delete_character/1 deletes the character", %{user: user} do
+      character = character_fixture(user)
       assert {:ok, %Character{}} = Characters.delete_character(character)
-      assert_raise Ecto.NoResultsError, fn -> Characters.get_character!(character.id) end
+      assert Characters.get_character(user, character.id) == nil
     end
 
-    test "change_character/1 returns a character changeset" do
-      character = character_fixture()
+    test "change_character/1 returns a character changeset", %{user: user} do
+      character = character_fixture(user)
       assert %Ecto.Changeset{} = Characters.change_character(character)
     end
   end

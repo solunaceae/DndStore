@@ -17,10 +17,10 @@ defmodule Dndstore.Characters do
       [%Character{}, ...]
 
   """
-  def list_characters(user_id) do
+  def list_characters(user) do
     query =
       from c in Character,
-        where: c.user_id == ^user_id
+        where: c.user_id == ^user.id
 
     Repo.all(query)
   end
@@ -39,10 +39,10 @@ defmodule Dndstore.Characters do
       ** (Ecto.NoResultsError)
 
   """
-  def get_character(user_id, id) do
+  def get_character(user, id) do
     query =
       from c in Character,
-        where: c.user_id == ^user_id,
+        where: c.user_id == ^user.id,
         where: c.id == ^id
 
     Repo.one(query)
@@ -60,8 +60,8 @@ defmodule Dndstore.Characters do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_character(user_id, attrs \\ %{}) do
-    %Character{user_id: user_id}
+  def create_character(user, attrs \\ %{}) do
+    %Character{user_id: user.id}
     |> Character.changeset(attrs)
     |> Repo.insert()
   end

@@ -5,7 +5,7 @@ defmodule DndstoreWeb.CharacterController do
   alias Dndstore.Characters.Character
 
   def index(conn, _params) do
-    characters = Characters.list_characters(conn.assigns.current_user.id)
+    characters = Characters.list_characters(conn.assigns.current_user)
     render(conn, :index, characters: characters)
   end
 
@@ -15,7 +15,7 @@ defmodule DndstoreWeb.CharacterController do
   end
 
   def create(conn, %{"character" => character_params}) do
-    case Characters.create_character(conn.assigns.current_user.id, character_params) do
+    case Characters.create_character(conn.assigns.current_user, character_params) do
       {:ok, character} ->
         conn
         |> put_flash(:info, "Character created successfully.")
@@ -27,7 +27,7 @@ defmodule DndstoreWeb.CharacterController do
   end
 
   def show(conn, %{"id" => id}) do
-    case Characters.get_character(conn.assigns.current_user.id, id) do
+    case Characters.get_character(conn.assigns.current_user, id) do
       nil ->
         conn
         |> put_flash(:error, "Character not found!")
@@ -39,7 +39,7 @@ defmodule DndstoreWeb.CharacterController do
   end
 
   def edit(conn, %{"id" => id}) do
-    case Characters.get_character(conn.assigns.current_user.id, id) do
+    case Characters.get_character(conn.assigns.current_user, id) do
       nil ->
         conn
         |> put_flash(:error, "Character not found!")
@@ -52,7 +52,7 @@ defmodule DndstoreWeb.CharacterController do
   end
 
   def update(conn, %{"id" => id, "character" => character_params}) do
-    case Characters.get_character(conn.assigns.current_user.id, id) do
+    case Characters.get_character(conn.assigns.current_user, id) do
       nil ->
         conn
         |> put_flash(:error, "Character not found!")
@@ -72,7 +72,7 @@ defmodule DndstoreWeb.CharacterController do
   end
 
   def delete(conn, %{"id" => id}) do
-    case Characters.get_character(conn.assigns.current_user.id, id) do
+    case Characters.get_character(conn.assigns.current_user, id) do
       nil ->
         conn
         |> put_flash(:error, "Character not found!")

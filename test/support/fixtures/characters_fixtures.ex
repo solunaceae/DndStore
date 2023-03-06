@@ -4,11 +4,13 @@ defmodule Dndstore.CharactersFixtures do
   entities via the `Dndstore.Characters` context.
   """
 
+  alias Dndstore.Accounts.User
+
   @doc """
   Generate a character.
   """
-  def character_fixture(attrs \\ %{}) do
-    {:ok, character} =
+  def character_fixture(%User{} = user, attrs \\ %{}) do
+    character =
       attrs
       |> Enum.into(%{
         charisma: 16,
@@ -17,10 +19,10 @@ defmodule Dndstore.CharactersFixtures do
         intelligence: 16,
         name: "some name",
         strength: 16,
-        wisdom: 16,
-        user_id: "1"
+        wisdom: 16
       })
-      |> Dndstore.Characters.create_character()
+      
+      {:ok, character} = Dndstore.Characters.create_character(user, character)
 
     character
   end

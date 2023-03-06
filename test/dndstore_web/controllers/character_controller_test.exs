@@ -1,25 +1,26 @@
 defmodule DndstoreWeb.CharacterControllerTest do
   use DndstoreWeb.ConnCase
 
+  import Dndstore.AccountsFixtures
   import Dndstore.CharactersFixtures
 
   @create_attrs %{
-    charisma: 42,
-    constitution: 42,
-    dexterity: 42,
-    intelligence: 42,
+    charisma: 16,
+    constitution: 16,
+    dexterity: 16,
+    intelligence: 16,
     name: "some name",
-    strength: 42,
-    wisdom: 42
+    strength: 16,
+    wisdom: 16
   }
   @update_attrs %{
-    charisma: 43,
-    constitution: 43,
-    dexterity: 43,
-    intelligence: 43,
+    charisma: 17,
+    constitution: 17,
+    dexterity: 17,
+    intelligence: 17,
     name: "some updated name",
-    strength: 43,
-    wisdom: 43
+    strength: 17,
+    wisdom: 17
   }
   @invalid_attrs %{
     charisma: nil,
@@ -102,7 +103,8 @@ defmodule DndstoreWeb.CharacterControllerTest do
   end
 
   defp create_character(_) do
-    character = character_fixture()
+    user = user_fixture()
+    character = character_fixture(user)
     %{character: character}
   end
 end
