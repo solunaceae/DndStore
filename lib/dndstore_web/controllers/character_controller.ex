@@ -31,7 +31,8 @@ defmodule DndstoreWeb.CharacterController do
       nil ->
         conn
         |> put_flash(:error, "Character not found!")
-        |> redirect(to: ~p"/characters/")
+        |> put_status(:not_found)
+        |> redirect(to: ~p"/characters")
 
       character ->
         render(conn, :show, character: character)
@@ -43,7 +44,8 @@ defmodule DndstoreWeb.CharacterController do
       nil ->
         conn
         |> put_flash(:error, "Character not found!")
-        |> redirect(to: ~p"/characters/")
+        |> put_status(:not_found)
+        |> redirect(to: ~p"/characters")
 
       character ->
         changeset = Characters.change_character(character)
@@ -56,7 +58,8 @@ defmodule DndstoreWeb.CharacterController do
       nil ->
         conn
         |> put_flash(:error, "Character not found!")
-        |> redirect(to: ~p"/characters/")
+        |> put_status(:not_found)
+        |> redirect(to: ~p"/characters")
 
       character ->
         case Characters.update_character(character, character_params) do
@@ -76,7 +79,8 @@ defmodule DndstoreWeb.CharacterController do
       nil ->
         conn
         |> put_flash(:error, "Character not found!")
-        |> redirect(to: ~p"/characters/")
+        |> put_status(:not_found)
+        |> redirect(to: ~p"/characters")
 
       character ->
         {:ok, _character} = Characters.delete_character(character)

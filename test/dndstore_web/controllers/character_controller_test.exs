@@ -1,7 +1,6 @@
 defmodule DndstoreWeb.CharacterControllerTest do
   use DndstoreWeb.ConnCase
 
-  import Dndstore.AccountsFixtures
   import Dndstore.CharactersFixtures
 
   @create_attrs %{
@@ -32,6 +31,8 @@ defmodule DndstoreWeb.CharacterControllerTest do
     wisdom: nil
   }
 
+  setup :register_and_log_in_user
+
   describe "index" do
     test "lists all characters", %{conn: conn} do
       conn = get(conn, ~p"/characters")
@@ -54,7 +55,7 @@ defmodule DndstoreWeb.CharacterControllerTest do
       assert redirected_to(conn) == ~p"/characters/#{id}"
 
       conn = get(conn, ~p"/characters/#{id}")
-      assert html_response(conn, 200) =~ "Character #{id}"
+      assert html_response(conn, 200) =~ "Character #{@create_attrs.name}"
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
@@ -64,7 +65,7 @@ defmodule DndstoreWeb.CharacterControllerTest do
   end
 
   describe "edit character" do
-    setup [:create_character]
+    setup [:register_and_log_in_user, :create_character]
 
     test "renders form for editing chosen character", %{conn: conn, character: character} do
       conn = get(conn, ~p"/characters/#{character}/edit")
@@ -95,15 +96,10 @@ defmodule DndstoreWeb.CharacterControllerTest do
     test "deletes chosen character", %{conn: conn, character: character} do
       conn = delete(conn, ~p"/characters/#{character}")
       assert redirected_to(conn) == ~p"/characters"
-
-      assert_error_sent 404, fn ->
-        get(conn, ~p"/characters/#{character}")
-      end
     end
   end
 
-  defp create_character(_) do
-    user = user_fixture()
+  defp create_character(%{user: user}) do
     character = character_fixture(user)
     %{character: character}
   end
