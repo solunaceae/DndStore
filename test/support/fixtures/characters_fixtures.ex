@@ -18,6 +18,7 @@ defmodule Dndstore.CharactersFixtures do
         dexterity: 16,
         intelligence: 16,
         name: "some name",
+        level: 16,
         strength: 16,
         wisdom: 16
       })

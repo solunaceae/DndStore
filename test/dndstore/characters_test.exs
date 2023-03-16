@@ -19,6 +19,7 @@ defmodule Dndstore.CharactersTest do
       dexterity: nil,
       intelligence: nil,
       name: nil,
+      level: nil
       strength: nil,
       wisdom: nil
     }
@@ -40,6 +41,7 @@ defmodule Dndstore.CharactersTest do
         dexterity: 16,
         intelligence: 16,
         name: "some name",
+        level: 16,
         strength: 16,
         wisdom: 16
       }

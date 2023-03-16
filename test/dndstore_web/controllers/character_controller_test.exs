@@ -9,6 +9,7 @@ defmodule DndstoreWeb.CharacterControllerTest do
     dexterity: 16,
     intelligence: 16,
     name: "some name",
+    level: 16,
     strength: 16,
     wisdom: 16
   }
@@ -18,6 +19,7 @@ defmodule DndstoreWeb.CharacterControllerTest do
     dexterity: 17,
     intelligence: 17,
     name: "some updated name",
+    level: 16,
     strength: 17,
     wisdom: 17
   }
@@ -27,6 +29,7 @@ defmodule DndstoreWeb.CharacterControllerTest do
     dexterity: nil,
     intelligence: nil,
     name: nil,
+    level: nil,
     strength: nil,
     wisdom: nil
   }
