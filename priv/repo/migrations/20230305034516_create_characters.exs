@@ -5,6 +5,7 @@ defmodule Dndstore.Repo.Migrations.CreateCharacters do
     create table(:characters, primary_key: false) do
       add :id, :binary_id, primary_key: true
       add :name, :string, null: false
+      add :level, :integer, null: false
       add :strength, :integer, null: false
       add :dexterity, :integer, null: false
       add :constitution, :integer, null: false

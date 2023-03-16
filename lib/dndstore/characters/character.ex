@@ -9,6 +9,7 @@ defmodule Dndstore.Characters.Character do
     field :constitution, :integer
     field :dexterity, :integer
     field :intelligence, :integer
+    field :level, :integer
     field :name, :string
     field :strength, :integer
     field :wisdom, :integer
@@ -25,6 +26,7 @@ defmodule Dndstore.Characters.Character do
       :strength,
       :dexterity,
       :constitution,
+      :level,
       :wisdom,
       :intelligence,
       :charisma
@@ -34,6 +36,7 @@ defmodule Dndstore.Characters.Character do
       :strength,
       :dexterity,
       :constitution,
+      :level,
       :wisdom,
       :intelligence,
       :charisma
@@ -42,6 +45,7 @@ defmodule Dndstore.Characters.Character do
     |> validate_inclusion(:constitution, 1..20)
     |> validate_inclusion(:dexterity, 1..20)
     |> validate_inclusion(:intelligence, 1..20)
+    |> validate_inclusion(:level, 1..20)
     |> validate_inclusion(:strength, 1..20)
     |> validate_inclusion(:wisdom, 1..20)
   end

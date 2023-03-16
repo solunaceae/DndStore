@@ -9,6 +9,7 @@
 
 <.table id="characters" rows={@characters} row_click={&JS.navigate(~p"/characters/#{&1}")}>
   <:col :let={character} label="Name"><%= character.name %></:col>
+  <:col :let={character} label="Level"><%= character.level%></:col>
   <:col :let={character} label="Strength"><%= character.strength %></:col>
   <:col :let={character} label="Dexterity"><%= character.dexterity %></:col>
   <:col :let={character} label="Constitution"><%= character.constitution %></:col>
