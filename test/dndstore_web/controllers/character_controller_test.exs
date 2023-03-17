@@ -89,7 +89,7 @@ defmodule DndstoreWeb.CharacterControllerTest do
 
     test "renders errors when data is invalid", %{conn: conn, character: character} do
       conn = put(conn, ~p"/characters/#{character}", character: @invalid_attrs)
-      assert html_response(conn, 200) =~ "Edit Character"
+      assert html_response(conn, 200) =~ "Editing #{@create_attrs.name}"
     end
   end
 
