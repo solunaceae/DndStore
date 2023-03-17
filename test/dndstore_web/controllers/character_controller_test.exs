@@ -72,7 +72,7 @@ defmodule DndstoreWeb.CharacterControllerTest do
 
     test "renders form for editing chosen character", %{conn: conn, character: character} do
       conn = get(conn, ~p"/characters/#{character}/edit")
-      assert html_response(conn, 200) =~ "Edit Character"
+      assert html_response(conn, 200) =~ "Editing #{@create_attrs.name}"
     end
   end
 
